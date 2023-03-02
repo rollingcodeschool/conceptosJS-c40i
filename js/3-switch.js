@@ -25,6 +25,7 @@ let dia = prompt(
 );
 
 switch (dia) {
+  case 'lunes':
   case "1":
     document.write(`<h2>Menú del lunes</h2>
         <ul>
