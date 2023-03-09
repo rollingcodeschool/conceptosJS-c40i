@@ -16,6 +16,4 @@ for(let indiceFilas=0; indiceFilas< filas ; indiceFilas++){
 
     document.write(' </tr>')
 }
-
-
 document.write('</tbody></table>')
