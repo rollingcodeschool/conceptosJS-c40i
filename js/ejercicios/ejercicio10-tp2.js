@@ -10,7 +10,8 @@ document.write('<table><tbody>');
 for(let indiceFilas=0; indiceFilas< filas ; indiceFilas++){
     document.write('<tr>')
         for(let indiceColumnas=0; indiceColumnas < columnas; indiceColumnas++){
-            document.write(`<td>1</td>`)
+            document.write(`<td>${numeroCelda}</td>`);
+            numeroCelda--; //numeroCelda = numeroCelda -1
         }
 
     document.write(' </tr>')
