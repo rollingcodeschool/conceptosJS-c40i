@@ -111,5 +111,19 @@ document.write('<h2>Encontrar un elemento en el peliculas</h2>');
 
 document.write(`<p>Existe Thor: ${peliculas.includes('Thor')}</p>`)
 
+//Operador ternario
+// (condicion logica)? true : false;
+let existePeli = peliculas.includes('Thor')? 'Si encontramos la pelicula' : 'No encontramos la pelicula buscada'; 
+// alternativa al operador ternario
+let otraPeli =''
+if(peliculas.includes('Capitan America')){
+    otraPeli = 'Si encontramos la pelicula'; 
+}else{
+    otraPeli = 'No encontramos la pelicula buscada'; 
+}
+
+document.write(`<p>Existe Thor: ${existePeli}</p>`);
+document.write(`<p>Existe Loky: ${(peliculas.includes('Loky'))? 'Si encontramos la pelicula' : 'No encontramos la pelicula buscada'}</p>`);
+
 
 
