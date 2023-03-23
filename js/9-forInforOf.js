@@ -18,11 +18,11 @@ for(let i in videoJuego){
 console.log('Otras pruebas');
 
 for(let i in colores){
-    console.log(i); //posicion
+    console.log(i); 
     console.log(colores[i]); 
 }
 
 for(let i of colores){
-    console.log(i); //item del array
+    console.log(i); //item del
     // console.log(colores[i]); 
 }
