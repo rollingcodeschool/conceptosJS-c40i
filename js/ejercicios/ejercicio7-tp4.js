@@ -56,39 +56,61 @@ class Agenda {
   }
 
   // aniadirContacto(Contacto): Añade un contacto a la agenda, sino la agenda no puede almacenar más contactos indicar por pantalla.
-  agregarContacto(contacto){
+  agregarContacto(contacto) {
     //quiero agregar contactos unicos
-
-    //verificar si la agenda esta llena
-    if( !this.agendaLlena()){
-        console.log('contacto agregado');
+    if(!this.existeContacto(contacto.nombre)){
+      //verificar si la agenda esta llena
+      if (!this.agendaLlena()) {
+        console.log("contacto agregado");
         this.contactos.push(contacto);
+      }
+    }else{
+      console.log('Ya existe el contacto '+contacto.nombre);
     }
-
-    console.log(this.contactos)
+    console.log(this.contactos);
   }
   // existeContacto(Contacto): indica si el contacto pasado existe o no.
-  existeContacto(nombreContacto){
-    const contactoBuscado = this.contactos.find((contacto)=> contacto.nombre === nombreContacto);
-    console.log(contactoBuscado);
+  existeContacto(nombreContacto) {
+    const contactoBuscado = this.contactos.find(
+      (contacto) => contacto.nombre === nombreContacto
+    );
+    if(contactoBuscado){
+      //agreguen el doc.write
+      console.log(contactoBuscado);
+      return true;
+    }else{
+      console.log('No existe el contacto '+nombreContacto);
+      return false;
+    }
   }
-  
+
   // listarContactos(): Lista toda la agenda
+  listarContactos(){
+    this.contactos.map((contacto)=>
+      //agregar un doc.writ
+      console.log(`Contacto: ${contacto.nombre} - Tel: ${contacto.telefono}`) 
+    )
+  }
   // buscarContacto(nombre): busca un contacto por su nombre y muestra su teléfono.
   // eliminarContacto(Contacto c): elimina el contacto de la agenda, indica si se ha eliminado o no por pantalla
   // agendaLlena(): indica si la agenda está llena.
-  agendaLlena(){
+  agendaLlena() {
     //si la agenda esta llena
-    if(this.contactos.length === this.tamanio){
-        console.log('la agenda esta llena');
-        return true;
-    }else{
-        console.log('hay espacio disponible en la agenda');
-        return false;
+    if (this.contactos.length === this.tamanio) {
+      console.log("la agenda esta llena");
+      return true;
+    } else {
+      console.log("hay espacio disponible en la agenda");
+      return false;
     }
   }
 
   // huecosLibres(): indica cuántos contactos más podemos ingresar.
+
+  borrarContacto(nombre){
+    let contactosFiltrados = this.contactos.filter((contacto)=> contacto.nombre !== nombre);
+    this.contactos = contactosFiltrados
+  }
 }
 
 // Crea un menú con opciones que serán seleccionadas por el usuario usando un prompt, las salidas de las operaciones seleccionadas por el usuario se pueden mostrar en pantalla y  por consola.
@@ -107,31 +129,35 @@ do {
     7- Espacio disponible para almacenar contactos
     8- Modificar tamaño de la agenda`)
   );
+  console.log(opcion);
 
   switch (opcion) {
     case 1:
-        const nombrePersona = prompt('Ingrese un nombre');
-        const telefonoPersona = prompt('Ingrese un telefono');
-        const contactoNuevo = new Contacto(nombrePersona, telefonoPersona);
-        agendaNueva.agregarContacto(contactoNuevo);
+      const nombrePersona = prompt("Ingrese un nombre");
+      const telefonoPersona = prompt("Ingrese un telefono");
+      const contactoNuevo = new Contacto(nombrePersona, telefonoPersona);
+      agendaNueva.agregarContacto(contactoNuevo);
 
       break;
     case 2:
-        const nombre = prompt('Ingrese el nombre buscado');
-        agendaNueva.existeContacto(nombre);
+      const nombre = prompt("Ingrese el nombre buscado");
+      agendaNueva.existeContacto(nombre);
       break;
     case 3:
-      console.log("Mostrar todos los contactos");
+      agendaNueva.listarContactos();
       break;
     case 4:
       console.log("4- Buscar un contacto por su nombre ");
       break;
     case 5:
-      console.log("   5 Eliminar un contacto  ");
+      const nombreParaBorrar = prompt("Ingrese el nombre para borrar");
+      agendaNueva.borrarContacto(nombreParaBorrar)
       break;
     case 6:
       console.log("  6 Ver si la agenda está llena");
-      (agendaNueva.agendaLlena())? document.write('La agenda esta llena'): document.write('La agenda tiene espacio disponible')
+      agendaNueva.agendaLlena()
+        ? document.write("La agenda esta llena")
+        : document.write("La agenda tiene espacio disponible");
       break;
     case 7:
       console.log("7 Ver el espacio disponible para almacenar contactos ");
