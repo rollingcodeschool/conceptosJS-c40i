@@ -130,7 +130,7 @@ do {
     8- Modificar tamaño de la agenda`)
   );
   console.log(opcion);
-
+if(!isNaN(opcion)){
   switch (opcion) {
     case 1:
       const nombrePersona = prompt("Ingrese un nombre");
@@ -168,4 +168,6 @@ do {
     default:
       alert("Selecciono una opcion invalida");
   }
+
+}
 } while (confirm("¿Desea realizar otra operación?"));
