@@ -109,7 +109,12 @@ class Agenda {
 
   borrarContacto(nombre){
     let contactosFiltrados = this.contactos.filter((contacto)=> contacto.nombre !== nombre);
-    this.contactos = contactosFiltrados
+    if(contactosFiltrados.length === this.contactos.length){
+      console.log(`No encontramos el contacto ${nombre}`)
+    }else{
+      console.log(`Contacto eliminado: ${nombre}`)
+      this.contactos = contactosFiltrados
+    }
   }
 }
 
